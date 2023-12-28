@@ -1,25 +1,17 @@
-<?php
-// Definir el nombre del archivo y la nueva resolución
-$nombreArchivo = 'img/img(1).jpg';
-$nuevaAnchura = 800;
-$nuevaAltura = 600;
+<!DOCTYPE html>
+<html>
 
-// Cargar la imagen original
-$imagenOriginal = imagecreatefromjpeg($nombreArchivo);
+<head>
+    <title>Subir Imágenes</title>
+</head>
 
-// Obtener las dimensiones originales
-list($anchuraOriginal, $alturaOriginal) = getimagesize($nombreArchivo);
+<body>
+    <form action="procesar_imagen.php" method="post" enctype="multipart/form-data">
+        <p>Selecciona imágenes para cambiar su resolución:</p>
+        <input type="file" name="imagenes[]" id="imagenes" multiple>
+        <input type="submit" value="Subir Imágenes" name="submit">
+    </form>
 
-// Crear una nueva imagen con la resolución deseada
-$imagenRedimensionada = imagecreatetruecolor($nuevaAnchura, $nuevaAltura);
+</body>
 
-// Copiar y redimensionar la imagen original en la nueva imagen
-imagecopyresampled($imagenRedimensionada, $imagenOriginal, 0, 0, 0, 0, $nuevaAnchura, $nuevaAltura, $anchuraOriginal, $alturaOriginal);
-
-// Guardar la nueva imagen
-imagejpeg($imagenRedimensionada, 'low_img/low_img(1).jpg');
-
-// Liberar memoria
-imagedestroy($imagenOriginal);
-imagedestroy($imagenRedimensionada);
-?>
+</html>
